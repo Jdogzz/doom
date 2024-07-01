@@ -68,7 +68,8 @@
 ;;(package! keycast)
 ;;(package! tabnine)
 ;;(unpin! doom-modeline)
-(package! emacsql-sqlite-builtin)
+;; Testing the regular emacsql
+;;(package! emacsql-sqlite-builtin)
                                         ;(package! jinx)
 (package! biblio)
 (package! citar-org-roam :disable t)

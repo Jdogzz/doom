@@ -308,7 +308,7 @@
         '(citar-file--parser-default
           citar-file--parser-triplet))
 
-  (setq org-roam-database-connector 'sqlite-builtin)
+  ;;(setq org-roam-database-connector 'sqlite-builtin)
   (setq org-roam-directory "~/orgroam")
   (setq org-roam-file-extensions '("org"))
 
@@ -467,4 +467,9 @@
 	message-sendmail-f-is-evil t
 	message-sendmail-extra-arguments '("--read-envelope-from")
 	message-send-mail-function #'message-send-mail-with-sendmail
-        mu4e-attachment-dir "~/generalsync/inbox/"))
+        mu4e-attachment-dir "~/generalsync/inbox/")
+  (add-to-list 'mu4e-bookmarks
+               '( :name  "Emails to process"
+                  :query "NOT (maildir:/trash OR maildir:/comcast/Trash OR maildir:/pacbell/Trash OR maildir:/outlook/Deleted OR maildir:/finances)"
+                  :key   ?e))
+  )
