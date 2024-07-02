@@ -53,7 +53,7 @@
 ;;(package! company-bibtex)
 ;;(package! company-jedi)
 ;;(package! org-ref)
-(package! ebib)
+;;(package! ebib)
 (package! olivetti)
 (package! nov)
 (package! org-edna
