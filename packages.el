@@ -54,7 +54,7 @@
 ;;(package! company-jedi)
 ;;(package! org-ref)
 ;;(package! ebib)
-(package! olivetti)
+;;(package! olivetti)
 (package! nov)
 (package! org-edna
   :recipe (:host github :repo "jdogzz/org-edna"))

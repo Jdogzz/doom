@@ -402,7 +402,7 @@
 
   (define-key org-roam-mode-map [mouse-1] #'org-roam-buffer-visit-thing)
   (setq org-roam-completion-everywhere t)
-  (add-hook 'org-roam-mode-hook #'olivetti-mode)
+  ;;(add-hook 'org-roam-mode-hook #'olivetti-mode)
   (setq org-roam-completion-ignore-case t)
   (put 'org-roam-directory 'safe-local-variable #'stringp)
   (put 'org-roam-db-location 'safe-local-variable #'stringp)
