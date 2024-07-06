@@ -370,6 +370,16 @@
 			      "#+title: ${title}\n#+filetags: :animal:\n")
 	   :immediate-finish t
 	   :unnarrowed t)
+          ("r" "product" plain "%?"
+	   :target (file+head "product/%<%Y%m%d%H%M%S>-${slug}.org"
+			      "#+title: ${title}\n#+filetags: :product:\n")
+	   :unnarrowed t)
+	  ("R" "product instant" plain "%?"
+	   :target (file+head "product/%<%Y%m%d%H%M%S>-${slug}.org"
+			      "#+title: ${title}\n#+filetags: :product:\n")
+	   :immediate-finish t
+	   :unnarrowed t)
+
 	  ))
 
   ;; (setq org-roam-dailies-directory "daily/")
