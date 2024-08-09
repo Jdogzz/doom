@@ -489,3 +489,6 @@
                   :key   ?r)
                )
   )
+
+(require 'julia-formatter)
+(add-hook 'julia-mode-hook #'julia-formatter-mode)
