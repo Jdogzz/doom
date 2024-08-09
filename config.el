@@ -480,6 +480,12 @@
         mu4e-attachment-dir "~/generalsync/inbox/")
   (add-to-list 'mu4e-bookmarks
                '( :name  "Emails to process"
-                  :query "NOT (maildir:/trash OR maildir:/comcast/Trash OR maildir:/pacbell/Trash OR maildir:/outlook/Deleted OR maildir:/finances)"
-                  :key   ?e))
+                  :query "NOT (maildir:/trash OR maildir:/comcast/Trash OR maildir:/pacbell/Trash OR maildir:/outlook/Deleted OR maildir:/finances OR maildir:/rss/.fun OR maildir:/rss/.geek)"
+                  :key   ?e)
+               )
+  (add-to-list 'mu4e-bookmarks
+               '( :name  "RSS to process"
+                  :query "flag:unread AND (maildir:/rss/.fun OR maildir:/rss/.geek)"
+                  :key   ?r)
+               )
   )
