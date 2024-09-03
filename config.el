@@ -490,5 +490,5 @@
                )
   )
 
-(require 'julia-formatter)
-(add-hook 'julia-mode-hook #'julia-formatter-mode)
+;; (require 'julia-formatter)
+;; (add-hook 'julia-mode-hook #'julia-formatter-mode)
