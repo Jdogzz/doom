@@ -58,7 +58,7 @@
 (package! nov)
 (package! org-edna
   :recipe (:host github :repo "jdogzz/org-edna"))
-(package! org-roam-ui)
+;;(package! org-roam-ui)
 (package! org-roam-timestamps)
 ;; (package! org-roam-bibtex)
 (package! zetteldesk)
@@ -81,3 +81,4 @@
 ;;                     "formatter_service.jl" ;; script executed by Julia
 ;;                     "Manifest.toml" "Project.toml" ;; project files
 ;;                     )))
+(package! org-contacts)
