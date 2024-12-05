@@ -41,7 +41,8 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/orgroam/actions/")
+(setq org-directory "~/generalsync/actions/")
+(setq org-roam-directory "~/generalsync")
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -120,24 +121,25 @@
   (setq org-link-search-must-match-exact-headline nil)
 
   (setq org-capture-templates `(
-
-                                ("i" "Inbox" entry  (file "~/gtd/gtddocs/inbox.org")
-                                 ,(concat "* %?\n"
-                                          "/Entered on/ %U"))
-                                ("n" "Next Action" entry  (file "~/gtd/gtddocs/inbox.org")
+                                ;; ("i" "Inbox" entry  (file "~/generalsync/inbox/inbox.org")
+                                ;;  ,(concat "* %?\n"
+                                ;;           "/Entered on/ %U"))
+                                ("a" "Action" entry  (file "~/generalsync/actions/actions.org")
                                  ,(concat "* NEXT %?\n"
-                                          "/Entered on/ %U"))
-                                ;;("n" "Note" entry  (file "~/gtd/gtddocs/inbox.org")
-                                ;; ,(concat "* Note (%a)\n"
-                                ;;          "/Entered on/ %U\n" "\n" "%?"))
-                                ("t" "Trigger" entry (file+headline "~/gtd/gtddocs/calendar.org" "Actions")
-                                 ,(concat "* NEXT Trigger %?\n"
                                           "/Entered on/ %U")
+                                 :jump-to-captured t
                                  )
-                                ("w" "Waiting" entry (file+headline "~/gtd/gtddocs/calendar.org" "Actions")
-                                 ,(concat "* WAITING %?\n"
-                                          "/Entered on/ %U")
-                                 )
+                                ;; ;;("n" "Note" entry  (file "~/gtd/gtddocs/inbox.org")
+                                ;; ;; ,(concat "* Note (%a)\n"
+                                ;; ;;          "/Entered on/ %U\n" "\n" "%?"))
+                                ;; ("t" "Trigger" entry (file+headline "~/gtd/gtddocs/calendar.org" "Actions")
+                                ;;  ,(concat "* NEXT Trigger %?\n"
+                                ;;           "/Entered on/ %U")
+                                ;;  )
+                                ;; ("w" "Waiting" entry (file+headline "~/gtd/gtddocs/calendar.org" "Actions")
+                                ;;  ,(concat "* WAITING %?\n"
+                                ;;           "/Entered on/ %U")
+                                ;;  )
                                 ))
 
   (setq org-refile-allow-creating-parent-nodes 'confirm)
@@ -296,29 +298,32 @@
 
   (require 'org-checklist)
 
-  (setq citar-bibliography '("~/generalsync/general-reference/Zotero/references.bib"))
-  ;;(setq citar-library-paths '("~/Nextcloud/general-reference/references/files"))
-  (setq citar-library-file-extensions nil)
-  ;;(setq citar-file-additional-files-separator "-")
-  (setq citar-notes-paths '("~/generalsync/general-reference/references/notes"))
-  (setq citar-file-note-extensions '("org"))
-
-  (setq citar-file-parser-functions
-        '(citar-file--parser-default
-          citar-file--parser-triplet))
-
-  ;; ;;(setq org-roam-database-connector 'sqlite-builtin)
-  (setq org-roam-directory "~/orgroam")
+  ;;(setq org-roam-database-connector 'sqlite-builtin)
   (setq org-roam-file-extensions '("org"))
 
   (setq org-roam-capture-templates
-        '(("d" "default" plain "%?"
-           :target (file+head "notes/%<%Y%m%d%H%M%S>-${slug}.org"
-        		      "#+title: ${title}\n")
+        '(
+          ("i" "inbox" plain "%?"
+           :target (file+head "inbox/%<%Y%m%d%H%M%S>-${slug}.org"
+                	      "#+title: ${title}\n\n")
            :unnarrowed t)
-          ("D" "default instant" plain "%?"
-           :target (file+head "notes/%<%Y%m%d%H%M%S>-${slug}.org"
-        		      "#+title: ${title}\n")
+          ;; ("p" "project" plain "%?"
+          ;;  :target (file+head "actions/%<%Y%m%d%H%M%S>-${slug}.org"
+          ;;       	      "#+title: ${title}\n#+filetags: :project:\n\n")
+          ;;  :unnarrowed t
+          ;;  :jump-to-captured t)
+          ;; ("P" "project instant" plain "%?"
+          ;;  :target (file+head "actions/%<%Y%m%d%H%M%S>-${slug}.org"
+          ;;       	      "#+title: ${title}\n#+filetags: :project:\n\n")
+          ;;  :immediate-finish t
+          ;;  :unnarrowed t)
+          ("r" "reference" plain "%?"
+           :target (file+head "reference/%<%Y%m%d%H%M%S>-${slug}.org"
+        		      "#+title: ${title}\n#+filetags: :reference:\n\n")
+           :unnarrowed t)
+          ("R" "reference instant" plain "%?"
+           :target (file+head "reference/%<%Y%m%d%H%M%S>-${slug}.org"
+        		      "#+title: ${title}\n#+filetags: :reference:\n\n")
            :immediate-finish t
            :unnarrowed t)
           ;; ("b" "bib pdf reference" plain "%?"
@@ -331,54 +336,58 @@
           ;;  (file+head "reference/%<%Y%m%d%H%M%S>-${slug}.org"
           ;;             "#+title: ${title}\n#+filetags: :reference:\n")
           ;;  :unnarrowed t)
-          ;; ("r" "reference note" plain
-          ;;  "%?"
-          ;;  :target
-          ;;  (file+head
-          ;;   "%(expand-file-name (or citar-org-roam-subdir \"\") org-roam-directory)/${citar-citekey}.org"
-          ;;   "#+title: ${citar-citekey} (${citar-date}). ${note-title}.\n#+filetags: :reference:\n#+created: %U\n#+last_modified: %U\n\n")
-          ;;  :unnarrowed t)
-          ("i" "index" plain "%?"
-           :target (file+head "notes/index/${slug}.org"
-        		      "#+title: ${title}\n")
+          ("l" "literature note" plain "%?"
+           :target (file+head "reference/literature-note/%<%Y%m%d%H%M%S>-${citar-citekey}.org"
+                              "#+title: ${title}\n#+filetags: :reference:literature-note:\n\n")
+           :unnarrowed t)
+          ("k" "knowledge note" plain "%?"
+           :target (file+head "reference/knowledge-note/%<%Y%m%d%H%M%S>-${slug}.org"
+                              "#+title: ${title}\n#+filetags: :reference:knowledge-note:\n\n")
+           :unnarrowed t)
+          ("I" "knowledge note index" plain "%?"
+           :target (file+head "reference/knowledge-note/%<%Y%m%d%H%M%S>-${slug}.org"
+                              "#+title: ${title}\n#+filetags: :reference:knowledge-note-index:\n\n")
+           :unnarrowed t)
+          ("s" "someday-maybe" plain "%?"
+           :target (file+head "someday-maybe/%<%Y%m%d%H%M%S>-${slug}.org"
+        		      "#+title: ${title}\n#+filetags: :someday-maybe:\n\n")
+           :unnarrowed t)
+          ("S" "someday-maybe instant" plain "%?"
+           :target (file+head "someday-maybe/%<%Y%m%d%H%M%S>-${slug}.org"
+        		      "#+title: ${title}\n#+filetags: :someday-maybe:\n\n")
            :immediate-finish t
            :unnarrowed t)
-          ("m" "meeting" plain "%?"
-           :target (file+head "meeting/%<%Y%m%d%H%M%S>-${slug}.org"
-        		      "#+title: ${title}\n#+filetags: :meeting:\n")
-           :unnarrowed t)
+          ;; ("I" "index" plain "%?"
+          ;;  :target (file+head "index/$%<%Y%m%d%H%M%S>-{slug}.org"
+          ;;       	      "#+title: ${title}\n#+filetages: :index:\n\n")
+          ;;  :immediate-finish t
+          ;;  :unnarrowed t)
+          ;; ("m" "meeting" plain "%?"
+          ;;  :target (file+head "meeting/%<%Y%m%d%H%M%S>-${slug}.org"
+          ;;       	      "#+title: ${title}\n#+filetags: :meeting:\n")
+          ;;  :unnarrowed t)
           ("p" "person" plain "%?"
-           :target (file+head "person/%<%Y%m%d%H%M%S>-${slug}.org"
-        		      "#+title: ${title}\n#+filetags: :person:\n")
+           :target (file+head "reference/person/%<%Y%m%d%H%M%S>-${slug}.org"
+                	      "#+title: ${title}\n#+filetags: :reference:\n\n")
            :unnarrowed t)
           ("P" "person instant" plain "%?"
-           :target (file+head "person/%<%Y%m%d%H%M%S>-${slug}.org"
-        		      "#+title: ${title}\n#+filetags: :person:\n")
+           :target (file+head "reference/person/%<%Y%m%d%H%M%S>-${slug}.org"
+                	      "#+title: ${title}\n#+filetags: :reference:\n\n")
            :immediate-finish t
            :unnarrowed t)
-          ("c" "communication" plain "%?"
-           :target (file+head "communication/%<%Y%m%d%H%M%S>-${slug}.org"
-        		      "#+title: ${title}\n#+filetags: :communication:\n")
-           :unnarrowed t)
-          ("a" "animal" plain "%?"
-           :target (file+head "animal/%<%Y%m%d%H%M%S>-${slug}.org"
-        		      "#+title: ${title}\n#+filetags: :animal:\n")
-           :unnarrowed t)
-          ("A" "animal instant" plain "%?"
-           :target (file+head "animal/%<%Y%m%d%H%M%S>-${slug}.org"
-        		      "#+title: ${title}\n#+filetags: :animal:\n")
-           :immediate-finish t
-           :unnarrowed t)
-          ("r" "product" plain "%?"
-           :target (file+head "product/%<%Y%m%d%H%M%S>-${slug}.org"
-        		      "#+title: ${title}\n#+filetags: :product:\n")
-           :unnarrowed t)
-          ("R" "product instant" plain "%?"
-           :target (file+head "product/%<%Y%m%d%H%M%S>-${slug}.org"
-        		      "#+title: ${title}\n#+filetags: :product:\n")
-           :immediate-finish t
-           :unnarrowed t)
-
+          ;; ("c" "communication" plain "%?"
+          ;;  :target (file+head "communication/%<%Y%m%d%H%M%S>-${slug}.org"
+          ;;       	      "#+title: ${title}\n#+filetags: :communication:\n")
+          ;;  :unnarrowed t)
+          ;; ("a" "animal" plain "%?"
+          ;;  :target (file+head "animal/%<%Y%m%d%H%M%S>-${slug}.org"
+          ;;       	      "#+title: ${title}\n#+filetags: :animal:\n")
+          ;;  :unnarrowed t)
+          ;; ("A" "animal instant" plain "%?"
+          ;;  :target (file+head "animal/%<%Y%m%d%H%M%S>-${slug}.org"
+          ;;       	      "#+title: ${title}\n#+filetags: :animal:\n")
+          ;;  :immediate-finish t
+          ;;  :unnarrowed t)
           ))
 
   ;; (setq org-roam-dailies-directory "daily/")
@@ -389,16 +398,16 @@
   ;;          :target (file+head "%<%Y-%m-%d>.org"
   ;;       		      "#+title: %<%Y-%m-%d>\n"))))
 
-  (setq org-roam-mode-sections
-        (list #'org-roam-backlinks-section
-              #'org-roam-reflinks-section
-              #'org-roam-unlinked-references-section
-              ))
+  ;; (setq org-roam-mode-sections
+  ;;       (list #'org-roam-backlinks-section
+  ;;             #'org-roam-reflinks-section
+  ;;             #'org-roam-unlinked-references-section
+  ;;             ))
 
-  ;;(setq +org-roam-auto-backlinks-buffer t)
-  (setq org-roam-node-display-template
-        (concat "${title:*} "
-        	(propertize "${tags:100}" 'face 'org-tag)))
+  ;; (setq +org-roam-auto-backlinks-buffer t)
+  ;; (setq org-roam-node-display-template
+  ;;       (concat "${title:*} "
+  ;;       	(propertize "${tags:100}" 'face 'org-tag)))
 
   ;;   ;; for org-roam-buffer-toggle
   (add-to-list 'display-buffer-alist
@@ -409,24 +418,42 @@
         	  (window-height . fit-window-to-buffer))))
 
   (define-key org-roam-mode-map [mouse-1] #'org-roam-buffer-visit-thing)
-  (setq org-roam-completion-everywhere t)
   ;;(add-hook 'org-roam-mode-hook #'olivetti-mode)
   (setq org-roam-completion-ignore-case t)
   (put 'org-roam-directory 'safe-local-variable #'stringp)
   (put 'org-roam-db-location 'safe-local-variable #'stringp)
 
+  (setf org-roam-mode-sections '(orb-section-reference
+                                 orb-section-file
+                                 orb-section-abstract
+                                 org-roam-backlinks-section
+                                 org-roam-reflinks-section
+                                 org-roam-unlinked-references-section))
+
+  (setq citar-bibliography '("~/generalsync/reference/Zotero/references.bib"))
+  (setq citar-library-file-extensions nil)
+  (setq citar-notes-paths '("~/generalsync/reference"))
+  (setq citar-file-note-extensions '("org"))
+
+  ;; (setq citar-file-parser-functions
+  ;;       '(citar-file--parser-default
+  ;;         citar-file--parser-triplet))
+
+  (setq citar-org-roam-capture-template-key "l")
+
   (setq org-export-allow-bind-keywords t)
 
   (require 'ox-koma-letter)
 
-  (setq org-contacts-files '("~/orgroam/general-reference/contacts.org"))
+  ;;(setq org-contacts-files '("~/orgroam/general-reference/contacts.org"))
   )
 
-(use-package! org-roam-timestamps
-  :after org-roam
-  :config
+(after! org-roam
   (setq org-roam-timestamps-parent-file t)
   (org-roam-timestamps-mode)
+
+  (org-roam-bibtex-mode)
+  (setq orb-roam-ref-format 'org-cite)
   )
 
 ;;(use-package! orderless

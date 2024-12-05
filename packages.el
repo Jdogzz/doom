@@ -58,9 +58,9 @@
 (package! nov)
 (package! org-edna
   :recipe (:host github :repo "jdogzz/org-edna"))
-;;(package! org-roam-ui)
+(package! org-roam-ui)
 (package! org-roam-timestamps)
-;; (package! org-roam-bibtex)
+(package! org-roam-bibtex)
 (package! zetteldesk)
 (package! openwith)
 ;;(package! flymake-grammarly)
@@ -71,8 +71,8 @@
 ;; Testing the regular emacsql
 ;;(package! emacsql-sqlite-builtin)
                                         ;(package! jinx)
-(package! biblio)
-(package! citar-org-roam :disable t)
+;;(package! biblio)
+;;(package! citar-org-roam :disable t)
 (package! ssh-agent)
 ;; (package! julia-formatter
 ;;   :recipe (:host codeberg :repo "FelipeLema/julia-formatter.el"
