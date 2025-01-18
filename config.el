@@ -268,15 +268,45 @@
           ;;           (org-agenda-with-colors nil)
           ;;           (org-agenda-prefix-format "  %?-12t% s"))
           ;;          ("~/pdfexportofgtd/agenda.pdf"))
-          ("b" "abs"
-           (category "aabs")
-           ((org-agenda-span 'year)
+          ("b" "aabs"
+           ((agenda ""))
+           (
+            (org-agenda-category-filter-preset '("+aabs"))
+            (org-agenda-span 'year)
             (org-agenda-with-colors nil)
             (org-agenda-use-time-grid nil)
-            (org-agenda-show-all-dates nil)
-            (org-agenda-prefix-format "")
+            (org-agenda-prefix-format "  %?-12t% s")
+            (org-agenda-write-buffer-name "AABS-Schedule")
+            (ps-left-header (list 'org-agenda-write-buffer-name))
+            (ps-print-color-p 'black-white)
             )
-           ("~/Public/Schedule.pdf"))
+           ("~/Public/AABS-Schedule.pdf"))
+          ("s" "ascw"
+           ((agenda ""))
+           (
+            (org-agenda-category-filter-preset '("+ascw"))
+            (org-agenda-span 'year)
+            (org-agenda-with-colors nil)
+            (org-agenda-use-time-grid nil)
+            (org-agenda-prefix-format "  %?-12t% s")
+            (org-agenda-write-buffer-name "ASCW-Schedule")
+            (ps-left-header (list 'org-agenda-write-buffer-name))
+            (ps-print-color-p 'black-white)
+            )
+           ("~/Public/ASCW-Schedule.pdf"))
+          ("m" "mdcw"
+           ((agenda ""))
+           (
+            (org-agenda-category-filter-preset '("+mdcw"))
+            (org-agenda-span 'year)
+            (org-agenda-with-colors nil)
+            (org-agenda-use-time-grid nil)
+            (org-agenda-prefix-format "  %?-12t% s")
+            (org-agenda-write-buffer-name "MDCW-Schedule")
+            (ps-left-header (list 'org-agenda-write-buffer-name))
+            (ps-print-color-p 'black-white)
+            )
+           ("~/Public/MDCW-Schedule.pdf"))
 
           )
         )
@@ -327,15 +357,15 @@
           ;;       	      "#+title: ${title}\n#+filetags: :project:\n\n")
           ;;  :immediate-finish t
           ;;  :unnarrowed t)
-          ("r" "reference" plain "%?"
-           :target (file+head "reference/%<%Y%m%d%H%M%S>-${slug}.org"
-        		      "#+title: ${title}\n#+filetags: :reference:\n\n")
-           :unnarrowed t)
-          ("R" "reference instant" plain "%?"
-           :target (file+head "reference/%<%Y%m%d%H%M%S>-${slug}.org"
-        		      "#+title: ${title}\n#+filetags: :reference:\n\n")
-           :immediate-finish t
-           :unnarrowed t)
+          ;; ("r" "reference" plain "%?"
+          ;;  :target (file+head "reference/%<%Y%m%d%H%M%S>-${slug}.org"
+          ;;       	      "#+title: ${title}\n#+filetags: :reference:\n\n")
+          ;;  :unnarrowed t)
+          ;; ("R" "reference instant" plain "%?"
+          ;;  :target (file+head "reference/%<%Y%m%d%H%M%S>-${slug}.org"
+          ;;       	      "#+title: ${title}\n#+filetags: :reference:\n\n")
+          ;;  :immediate-finish t
+          ;;  :unnarrowed t)
           ;; ("b" "bib pdf reference" plain "%?"
           ;;  :if-new
           ;;  (file+head "reference/%<%Y%m%d%H%M%S>-${slug}.org" ":PROPERTIES:\n:NOTER_DOCUMENT: ${file}\n:END:\n#+title: ${title}\n#+filetags: :reference:\n")
@@ -346,16 +376,16 @@
           ;;  (file+head "reference/%<%Y%m%d%H%M%S>-${slug}.org"
           ;;             "#+title: ${title}\n#+filetags: :reference:\n")
           ;;  :unnarrowed t)
-          ("l" "literature note" plain "%?"
-           :target (file+head "reference/literature-note/%<%Y%m%d%H%M%S>-${citar-citekey}.org"
-                              "#+title: ${title}\n#+filetags: :reference:literature-note:\n\n")
-           :unnarrowed t)
+          ;; ("l" "literature note" plain "%?"
+          ;;  :target (file+head "reference/literature-note/%<%Y%m%d%H%M%S>-${citar-citekey}.org"
+          ;;                     "#+title: ${title}\n#+filetags: :reference:literature-note:\n\n")
+          ;;  :unnarrowed t)
           ("k" "knowledge note" plain "%?"
            :target (file+head "reference/knowledge-note/%<%Y%m%d%H%M%S>-${slug}.org"
                               "#+title: ${title}\n#+filetags: :reference:knowledge-note:\n\n")
            :unnarrowed t)
           ("I" "knowledge note index" plain "%?"
-           :target (file+head "reference/knowledge-note/%<%Y%m%d%H%M%S>-${slug}.org"
+           :target (file+head "reference/knowledge-note/index/%<%Y%m%d%H%M%S>-${slug}.org"
                               "#+title: ${title}\n#+filetags: :reference:knowledge-note-index:\n\n")
            :unnarrowed t)
           ("s" "someday-maybe" plain "%?"

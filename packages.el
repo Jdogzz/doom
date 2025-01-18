@@ -49,7 +49,7 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
                                         ;(unpin! t)
 
-(package! org-agenda-property)
+;;(package! org-agenda-property)
 ;;(package! company-bibtex)
 ;;(package! company-jedi)
 ;;(package! org-ref)
