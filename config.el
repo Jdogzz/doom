@@ -357,13 +357,13 @@
           ;;       	      "#+title: ${title}\n#+filetags: :project:\n\n")
           ;;  :immediate-finish t
           ;;  :unnarrowed t)
-          ;; ("r" "reference" plain "%?"
-          ;;  :target (file+head "reference/%<%Y%m%d%H%M%S>-${slug}.org"
-          ;;       	      "#+title: ${title}\n#+filetags: :reference:\n\n")
+          ;; ("r" "reference note" plain "%?"
+          ;;  :target (file+head "reference/reference-note/%<%Y%m%d%H%M%S>-${slug}.org"
+          ;;       	      "#+title: ${title}\n#+filetags: :reference:reference-note:\n\n")
           ;;  :unnarrowed t)
           ;; ("R" "reference instant" plain "%?"
-          ;;  :target (file+head "reference/%<%Y%m%d%H%M%S>-${slug}.org"
-          ;;       	      "#+title: ${title}\n#+filetags: :reference:\n\n")
+          ;;  :target (file+head "reference/reference-note/%<%Y%m%d%H%M%S>-${slug}.org"
+          ;;       	      "#+title: ${title}\n#+filetags: :reference:reference-note:\n\n")
           ;;  :immediate-finish t
           ;;  :unnarrowed t)
           ;; ("b" "bib pdf reference" plain "%?"
@@ -376,10 +376,10 @@
           ;;  (file+head "reference/%<%Y%m%d%H%M%S>-${slug}.org"
           ;;             "#+title: ${title}\n#+filetags: :reference:\n")
           ;;  :unnarrowed t)
-          ;; ("l" "literature note" plain "%?"
-          ;;  :target (file+head "reference/literature-note/%<%Y%m%d%H%M%S>-${citar-citekey}.org"
-          ;;                     "#+title: ${title}\n#+filetags: :reference:literature-note:\n\n")
-          ;;  :unnarrowed t)
+          ("r" "reference note" plain "%?"
+           :target (file+head "reference/reference-note/%<%Y%m%d%H%M%S>-${citar-citekey}.org"
+                              "#+title: Notes on ${title} (${citar-date})\n#+filetags: :reference:reference-note:\n\n")
+           :unnarrowed t)
           ("k" "knowledge note" plain "%?"
            :target (file+head "reference/knowledge-note/%<%Y%m%d%H%M%S>-${slug}.org"
                               "#+title: ${title}\n#+filetags: :reference:knowledge-note:\n\n")
@@ -463,38 +463,31 @@
   (put 'org-roam-directory 'safe-local-variable #'stringp)
   (put 'org-roam-db-location 'safe-local-variable #'stringp)
 
-  (setf org-roam-mode-sections '(orb-section-reference
-                                 orb-section-file
-                                 orb-section-abstract
-                                 org-roam-backlinks-section
+  (setf org-roam-mode-sections '(org-roam-backlinks-section
                                  org-roam-reflinks-section
                                  org-roam-unlinked-references-section))
 
-  (setq citar-bibliography '("~/generalsync/reference/Zotero/references.bib"))
-  (setq citar-library-file-extensions nil)
-  (setq citar-notes-paths '("~/generalsync/reference"))
-  (setq citar-file-note-extensions '("org"))
+  (setq citar-bibliography '("~/generalsync/reference/bibfiles/My Library.bib" "~/generalsync/reference/bibfiles/My books.bib"))
+  ;;(setq citar-library-file-extensions nil)
+  ;;(setq citar-notes-paths '("~/generalsync/reference/reference-note/"))
+  ;;(setq citar-file-note-extensions '("org"))
 
-  ;; (setq citar-file-parser-functions
-  ;;       '(citar-file--parser-default
-  ;;         citar-file--parser-triplet))
+  (setq citar-file-parser-functions
+        '(citar-file--parser-default
+          citar-file--parser-triplet))
 
-  (setq citar-org-roam-capture-template-key "l")
+  (setq citar-org-roam-capture-template-key "r")
 
   (setq org-export-allow-bind-keywords t)
 
   (require 'ox-koma-letter)
 
   ;;(setq org-contacts-files '("~/orgroam/general-reference/contacts.org"))
-  )
 
-(after! org-roam
   (setq org-roam-timestamps-parent-file t)
   (org-roam-timestamps-mode)
-
-  (org-roam-bibtex-mode)
-  (setq orb-roam-ref-format 'org-cite)
   )
+
 
 ;;(use-package! orderless
 ;;  :after vertico
