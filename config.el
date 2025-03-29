@@ -280,7 +280,7 @@
             (ps-left-header (list 'org-agenda-write-buffer-name))
             (ps-print-color-p 'black-white)
             )
-           ("~/Public/AABS-Schedule.pdf"))
+           ("~/generalsync/inbox/Public/AABS-Schedule.pdf"))
           ("s" "ascw"
            ((agenda ""))
            (
@@ -293,7 +293,7 @@
             (ps-left-header (list 'org-agenda-write-buffer-name))
             (ps-print-color-p 'black-white)
             )
-           ("~/Public/ASCW-Schedule.pdf"))
+           ("~/generalsync/inbox/Public/ASCW-Schedule.pdf"))
           ("m" "mdcw"
            ((agenda ""))
            (
@@ -306,7 +306,7 @@
             (ps-left-header (list 'org-agenda-write-buffer-name))
             (ps-print-color-p 'black-white)
             )
-           ("~/Public/MDCW-Schedule.pdf"))
+           ("~/generalsync/inbox/Public/MDCW-Schedule.pdf"))
 
           )
         )
