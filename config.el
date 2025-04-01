@@ -32,9 +32,15 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-monokai-pro)
+;;(setq doom-theme 'doom-monokai-pro)
 ;;(setq doom-theme 'doom-one-light)
 ;;(setq doom-theme 'doom-molokai)
+
+(use-package! base16-stylix-theme)
+(require 'base16-stylix-theme)
+(setq doom-theme 'base16-stylix)
+
+
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
@@ -528,8 +534,8 @@
 (dirvish-peek-mode)
 (dirvish-side-follow-mode)
 
-(set-frame-parameter nil 'alpha-background 80)
-(add-to-list 'default-frame-alist '(alpha-background . 80))
+;;(set-frame-parameter nil 'alpha-background 80)
+;;(add-to-list 'default-frame-alist '(alpha-background . 80))
 
 (after! mu4e
   (setq sendmail-program (executable-find "msmtp")
