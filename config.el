@@ -39,7 +39,9 @@
 (use-package! base16-stylix-theme)
 (require 'base16-stylix-theme)
 (setq doom-theme 'base16-stylix)
-
+(setq base16-theme-256-color-source 'colors)
+(load-theme 'base16-stylix t)
+(add-to-list 'default-frame-alist '(alpha-background . 80))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -533,9 +535,6 @@
 
 (dirvish-peek-mode)
 (dirvish-side-follow-mode)
-
-;;(set-frame-parameter nil 'alpha-background 80)
-;;(add-to-list 'default-frame-alist '(alpha-background . 80))
 
 (after! mu4e
   (setq sendmail-program (executable-find "msmtp")
