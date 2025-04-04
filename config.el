@@ -555,8 +555,10 @@
                )
   )
 
-;; (require 'julia-formatter)
-;; (add-hook 'julia-mode-hook #'julia-formatter-mode)
+(setq lsp-julia-package-dir nil)
+(require 'julia-formatter)
+;;(setq julia-formatter-should-compile-julia-image 'never-compile)
+(add-hook 'julia-mode-hook #'julia-formatter-mode)
 ;;
 ;;
 ;;
@@ -584,3 +586,7 @@
 ;; :ADDRESS:
 ;; :BIRTHDAY:
 ;; :END:")))
+
+(after! vterm
+  (setq vterm-shell "fish")
+  )
