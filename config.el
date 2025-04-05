@@ -590,3 +590,6 @@
 (after! vterm
   (setq vterm-shell "fish")
   )
+
+;; Set annotations in PDFs as pop up tooltips on mouse over https://github.com/doomemacs/doomemacs/issues/1615
+(add-hook 'pdf-view-mode-hook #'tooltip-mode)
