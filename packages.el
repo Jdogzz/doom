@@ -83,3 +83,4 @@
                     )))
 (package! org-contacts)
 (package! org-ql)
+(package! auctex-cont-latexmk)
