@@ -33,7 +33,7 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;;(setq doom-theme 'doom-monokai-pro)
-;;(setq doom-theme 'doom-one-light)
+;;(setq doom-theme 'doom-one)
 ;;(setq doom-theme 'doom-molokai)
 
 (use-package! base16-stylix-theme)
@@ -151,6 +151,7 @@
                                 ))
 
   (setq org-refile-allow-creating-parent-nodes 'confirm)
+  (setq org-refile-use-outline-path 'file)
   ;; (setq org-refile-targets '(("~/gtd/gtddocs/projects.org" :maxlevel . 2)
   ;;                            ("~/gtd/gtddocs/calendar.org" :maxlevel . 2)
   ;;                            ("~/gtd/gtddocs/nextactions.org" :level . 1)
@@ -475,7 +476,7 @@
                                  org-roam-reflinks-section
                                  org-roam-unlinked-references-section))
 
-  (setq citar-bibliography '("~/generalsync/reference/bibfiles/My Library.bib" "~/generalsync/reference/bibfiles/My books.bib"))
+  (setq citar-bibliography '("~/generalsync/reference/bibfiles/My Library.bib" "~/generalsync/reference/bibfiles/Books.bib"))
   ;;(setq citar-library-file-extensions nil)
   ;;(setq citar-notes-paths '("~/generalsync/reference/reference-note/"))
   ;;(setq citar-file-note-extensions '("org"))
@@ -519,11 +520,6 @@
 ;;   (shell-command-to-string "~/gitrepos/gtdexportscripts/gtdupload.sh")
 ;;   ;;(org-caldav-sync)
 ;;   )
-
-;;(use-package! conda
-;;  :config
-;;  (conda-env-initialize-eshell)
-;;  )
 
 ;; This makes sure undo won't clear out large amounts of changes when doing lengthy edits.
 (setq evil-want-fine-undo t)
@@ -586,6 +582,8 @@
 ;; :ADDRESS:
 ;; :BIRTHDAY:
 ;; :END:")))
+
+(setq eshell-history-size 1000)
 
 (after! vterm
   (setq vterm-shell "fish")
