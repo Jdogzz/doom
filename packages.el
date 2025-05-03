@@ -55,7 +55,8 @@
 ;;(package! org-ref)
 ;;(package! ebib)
 ;;(package! olivetti)
-(package! nov)
+(package! nov
+  :recipe (:host github :repo "emacsmirror/nov"))
 (package! org-edna
   :recipe (:host github :repo "jdogzz/org-edna"))
 (package! org-roam-ui)
